@@ -6,13 +6,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.education.name.presentation.ui.screen.admin.NewCourseScreen
 import com.education.name.presentation.ui.screen.auth.LoginScreen
 import com.education.name.presentation.ui.screen.auth.SignupScreen
 
 object Routes {
     const val SIGNUP = "signup"
     const val LOGIN = "login"
-    const val HOME = "home"
+    const val ADMIN = "admin"
 }
 
 @Composable
@@ -24,7 +25,7 @@ fun App(
         composable(Routes.SIGNUP) {
             SignupScreen(
                 onSignupSuccess = {
-                    navController.navigate(Routes.HOME) {
+                    navController.navigate(Routes.ADMIN) {
                         popUpTo(Routes.SIGNUP) { inclusive = true } // remove signup from backstack
                     }
                 }
@@ -34,16 +35,16 @@ fun App(
         composable(Routes.LOGIN) {
             LoginScreen(
                 onLoginSuccess = {
-                    navController.navigate(Routes.HOME) {
+                    navController.navigate(Routes.ADMIN) {
                         popUpTo(Routes.LOGIN) { inclusive = true } // remove login from backstack
                     }
                 }
             )
         }
 
-        composable(Routes.HOME) {
+        composable(Routes.ADMIN) {
             // Replace with your HomeScreen
-            androidx.compose.material3.Text("Home Screen")
+            NewCourseScreen()
         }
     }
 }
