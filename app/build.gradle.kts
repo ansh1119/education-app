@@ -2,11 +2,15 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+    id("com.google.gms.google-services")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
     namespace = "com.education.name"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.education.name"
@@ -56,4 +60,25 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+// Firebase BOM
+    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+
+// Navigation Compose
+    val navVersion = "2.8.4"
+    implementation("androidx.navigation:navigation-compose:$navVersion")
+
+
+
+    //hilt
+    implementation ("com.google.dagger:hilt-android:2.51.1")
+    kapt ("com.google.dagger:hilt-compiler:2.51.1")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation ("com.google.firebase:firebase-firestore")
+
+    //coil
+    implementation ("io.coil-kt:coil-compose:2.4.0")
+    implementation ("io.coil-kt:coil-svg:2.4.0")
 }
